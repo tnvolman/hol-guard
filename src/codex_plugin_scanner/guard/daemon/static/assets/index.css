@@ -1501,6 +1501,10 @@
     max-width: 3.25rem;
   }
 
+  .max-w-\[16rem\] {
+    max-width: 16rem;
+  }
+
   .max-w-\[17\.5rem\] {
     max-width: 17.5rem;
   }
