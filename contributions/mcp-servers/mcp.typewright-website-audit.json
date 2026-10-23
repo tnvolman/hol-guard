@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "guard.mcp-server-contribution.v1",
+  "id": "mcp.typewright-website-audit",
+  "version": "1.0.0",
+  "name": "Typewright Website Audit",
+  "description": "Local stdio server from tnvolman/typewright-website-audit. To get Guard's review defaults, set the MCP command basename to typewright-website-audit, not node plus args. audit-mcp.js is owned by mcp.jd-church-website-audit. audit_website only POSTs {url, source:\"plugin\", include_cta} to the configured endpoint (default https://typewrightstudio.com/api/audit?source=plugin). No API key. It does not fetch or upload page HTML, read local files, or write the URL or report to disk. Off until you turn it on.",
+  "trustClass": "external",
+  "activation": "opt-in",
+  "publisher": {
+    "id": "io.github.tnvolman",
+    "displayName": "Michael McClanahan",
+    "url": "https://github.com/tnvolman/typewright-website-audit"
+  },
+  "icon": {
+    "kind": "react-icon",
+    "name": "HiMiniGlobeAlt",
+    "background": "#0F172A"
+  },
+  "homepage": "https://typewrightstudio.com/audit/",
+  "license": "MIT",
+  "launch": {
+    "kind": "direct-command",
+    "command": "typewright-website-audit"
+  },
+  "riskClasses": [
+    "external-url-submission"
+  ],
+  "tools": [
+    {
+      "name": "audit_website",
+      "state": "review"
+    },
+    {
+      "name": "other",
+      "state": "review"
+    }
+  ],
+  "referenceUrls": [
+    "https://github.com/tnvolman/typewright-website-audit",
+    "https://github.com/tnvolman/typewright-website-audit/blob/main/server/audit-mcp.js",
+    "https://github.com/tnvolman/typewright-website-audit/blob/main/PRIVACY.md",
+    "https://github.com/tnvolman/typewright-website-audit/commit/d5c43d9b33b3111a1f6c2ab3566849478c190a86",
+    "https://typewrightstudio.com/api/audit",
+    "https://typewrightstudio.com/privacy/",
+    "https://typewrightstudio.com/terms/",
+    "https://typewrightstudio.com/audit/"
+  ],
+  "saferAlternatives": [
+    "To get Guard's review defaults, set the MCP command basename to typewright-website-audit, not node plus args. Guard matches only that basename.",
+    "Published mcp.json uses node and server/audit-mcp.js. node is reserved, so that launch is not matched. Launching basename audit-mcp.js matches mcp.jd-church-website-audit, not this entry.",
+    "At d5c43d9 server/audit-mcp.js is mode 100644, not executable, despite its node shebang. The README starts it with node plus args.",
+    "audit_website only POSTs {url, source:\"plugin\", include_cta} to TYPEWRIGHT_AUDIT_ENDPOINT?source=plugin (default https://typewrightstudio.com/api/audit). Sets Content-Type, Accept, Content-Length, User-Agent typewright-website-audit-mcp/0.1.0. No API key.",
+    "The plugin does not fetch or upload page HTML or read local files, and it does not write the URL or report to disk. include_cta defaults to true. A non-default http or https endpoint with no login and no hash receives that POST instead.",
+    "https://typewrightstudio.com/privacy/ says the service fetches public pages, sends the address to Google PageSpeed Insights, and looks the domain up in RDAP. PRIVACY.md states the fetch and the PageSpeed send, and does not name RDAP.",
+    "Both say the address and results are not stored, a salted IP hash stays in memory for at most 24 hours, and audit data is not used to train models. Only the site page says the hash is not beside the address and plugin use is not logged separately.",
+    "The privacy page says the URL is in the body, so it is not in Vercel request logs, and the checker writes no logs. Vercel keeps request logs for a short time (duration unverified). PageSpeed and RDAP hosts are unnamed. Service code is unverified."
+  ]
+}
